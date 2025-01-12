@@ -39,7 +39,7 @@ The following keys are supported:
 | Key                    |  Type  | Required | Description                                                                                                                                                                               |
 | ---------------------- | :----: | :------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name`                 | string |   Yes    | The display name that will be used in the HACS UI.                                                                                                                                        |
-| `content_in_root`      |  bool  |    No    | Indicates whether the content is in the root of the repository as opposed to in a subdirectory.                                                                                           |
+| `content_in_root`      |  bool  |    No    | Indicates whether the content is in the root of the repository as opposed to in a subdirectory. If false, HACS pulls content from the /dist directory                                                                                         |
 | `zip_release`          |  bool  |    No    | Indicates whether the content is in a zipped archive when releases are published on GitHub. If you use this you also need to add `filename`. **This is only supported for integrations.** |
 | `filename`             | string |    No    | Name of the file HACS should look for, only applies to single item types (plugin, theme, template, python_scripts, zip_release).                                                     |
 | `hide_default_branch`  |  bool  |    No    | Tells HACS to not offer downloading the default branch.                                                                                                                                   |
@@ -84,6 +84,10 @@ Allow Home Assistant beta versions by appending `b0`. Without `b0`, only officia
   "persistent_directory": "userfiles"
 }
 ```
+### The content_in_root key
+
+If your plugin or lovelace card has additional files beyond YOUR-CARD.js which are to be downloaded into the /config/www/community/YOUR-CARD directory, the content_in_root boolean should be set to "false" and a /dist directory provided with all the files that will reside in that directory, including YOUR-CARD.js. The README.MD, LICENSE, and hacs.json file remain in root. 
+
 
 ### Versions
 
